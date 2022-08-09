@@ -1,0 +1,245 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/vue@3"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+
+</head>
+
+<body>
+
+
+
+    <section id="app2">
+    <div class="container">
+     
+        <p> Plakası</p>
+        <select v-model="plakano">
+            <option v-for="no in plaka">{{no}}</option>
+        </select>
+      
+
+
+          <p>den</p>
+          <select v-model="kbplaka" name="" id="">
+            <option>küçük</option>
+            <option>büyük</option>
+          </select> 
+          <p>nüfusu</p>  
+            <select v-model="nufusno" >
+                <option>500000</option>
+                <option>1000000</option>
+                <option>1500000</option>
+                <option>2000000</option>
+                <option>5000000</option>
+              
+            </select>
+          <p>den</p>
+          <select v-model="kbnufus" name="" id="">
+            <option>küçük</option>
+            <option>büyük</option>
+          </select> 
+    
+          <p>şehirleri</p>
+
+          <button @click="ara()">Ara</button>
+        
+     
+    </div>
+    <div class="result">
+          
+    <table style="width:100%">
+        <tr>
+          <th>plaka</th>
+          <th>şehir</th>
+          <th>nüfus</th>
+        </tr>
+        <tr v-for="item in sonuc" >
+          <td>{{item.plaka}}</td>
+          <td>{{item.city}} </td>
+          <td>{{item.nufus}}</td>
+        </tr>
+    </table>
+    </div>
+   
+    </section>
+
+
+
+    <script>
+
+
+        const app = Vue.createApp({
+            data() {
+                return {
+                    myArray:[
+{city:'Adana',nufus:2201670,plaka:1},
+{city:'Adıyaman',nufus:610484,plaka:2},
+{city:'Afyonkarahisar',nufus:714523,plaka:3},
+{city:'Ağrı',nufus:542255,plaka:4},
+{city:'Amasya',nufus:326351,plaka:5},
+{city:'Ankara',nufus:5346518,plaka:6},
+{city:'Antalya',nufus:2328555,plaka:7},
+{city:'Artvin',nufus:168068,plaka:8},
+{city:'Aydın',nufus:1068260,plaka:9},
+{city:'Balıkesir',nufus:1196176,plaka:10},
+{city:'Bilecik',nufus:218297,plaka:11},
+{city:'Bingöl',nufus:269560,plaka:12},
+{city:'Bitlis',nufus:341225,plaka:13},
+{city:'Bolu',nufus:299896,plaka:14},
+{city:'Burdur',nufus:261401,plaka:15},
+{city:'Bursa',nufus:2901396,plaka:16},
+{city:'Çanakkale',nufus:519793,plaka:17},
+{city:'Çankırı',nufus:183880,plaka:18},
+{city:'Çorum',nufus:527863,plaka:19},
+{city:'Denizli',nufus:1005687,plaka:20},
+{city:'Diyarbakır',nufus:1673119,plaka:21},
+{city:'Edirne',nufus:401701,plaka:22},
+{city:'Elazığ',nufus:578789,plaka:23},
+{city:'Erzincan',nufus:226032,plaka:24},
+{city:'Erzurum',nufus:762021,plaka:25},
+{city:'Eskişehir',nufus:844842,plaka:26},
+{city:'Gaziantep',nufus:1974244,plaka:27},
+{city:'Giresun',nufus:444467,plaka:28},
+{city:'Gümüşhane',nufus:172034,plaka:29},
+{city:'Hakkari',nufus:267813,plaka:30},
+{city:'Hatay',nufus:1555165,plaka:31},
+{city:'Isparta',nufus:427324,plaka:32},
+{city:'Mersin',nufus:1773852,plaka:33},
+{city:'İstanbul',nufus:14804116,plaka:34},
+{city:'İzmir',nufus:4223545,plaka:35},
+{city:'Kars',nufus:289786,plaka:36},
+{city:'Kastamonu',nufus:376945,plaka:37},
+{city:'Kayseri',nufus:1358980,plaka:38},
+{city:'Kırklareli',nufus:351684,plaka:39},
+{city:'Kırşehir',nufus:229975,plaka:40},
+{city:'Kocaeli',nufus:1830772,plaka:41},
+{city:'Konya',nufus:2161303,plaka:42},
+{city:'Kütahya',nufus:573642,plaka:43},
+{city:'Malatya',nufus:781305,plaka:44},
+{city:'Manisa',nufus:1396945,plaka:45},
+{city:'Kahramanmaraş',nufus:1112634,plaka:46},
+{city:'Mardin',nufus:796237,plaka:47},
+{city:'Muğla',nufus:923773,plaka:48},
+{city:'Muş',nufus:406501,plaka:49},
+{city:'Nevşehir',nufus:290895,plaka:50},
+{city:'Niğde',nufus:351468,plaka:51},
+{city:'Ordu',nufus:750588,plaka:52},
+{city:'Rize',nufus:331048,plaka:53},
+{city:'Sakarya',nufus:976948,plaka:54},
+{city:'Samsun',nufus:1295927,plaka:55},
+{city:'Siirt',nufus:322664,plaka:56},
+{city:'Sinop',nufus:205478,plaka:57},
+{city:'Sivas',nufus:621224,plaka:58},
+{city:'Tekirdağ',nufus:972875,plaka:59},
+{city:'Tokat',nufus:602662,plaka:60},
+{city:'Trabzon',nufus:779379,plaka:61},
+{city:'Tunceli',nufus:82193,plaka:62},
+{city:'Şanlıurfa',nufus:1940627,plaka:63},
+{city:'Uşak',nufus:358736,plaka:64},
+{city:'Van',nufus:1100190,plaka:65},
+{city:'Yozgat',nufus:421041,plaka:66},
+{city:'Zonguldak',nufus:597524,plaka:67},
+{city:'Aksaray',nufus:396673,plaka:68},
+{city:'Bayburt',nufus:90154,plaka:69},
+{city:'Karaman',nufus:245610,plaka:70},
+{city:'Kırıkkale',nufus:277984,plaka:71},
+{city:'Batman',nufus:576899,plaka:72},
+{city:'Şırnak',nufus:483788,plaka:73},
+{city:'Bartın',nufus:192389,plaka:74},
+{city:'Ardahan',nufus:98335,plaka:75},
+{city:'Iğdır',nufus:192785,plaka:76},
+{city:'Yalova',nufus:241665,plaka:77},
+{city:'Karabük',nufus:242347,plaka:78},
+{city:'Kilis',nufus:130825,plaka:79},
+{city:'Osmaniye',nufus:522175,plaka:80},
+{city:'Düzce',nufus:370371,plaka:81},
+
+                    ],
+                    plaka:81,
+                    plakano:0,
+                    sonuc:[],
+                   
+                    nufusno:0,
+                    kbplaka:"",
+                    kbnufus:""
+               
+                  
+                  
+                };
+            },
+
+            methods: {
+
+
+                
+      ara(){
+//         this.myArray.sort(function (a, b) {
+//         if (a.city.toLowerCase() < b.city.toLowerCase())
+//         return -1;
+//         if (a.city.toLowerCase() > b.city.toLowerCase())
+//         return 1;
+
+//         return a.plaka- b.plaka;
+
+// })
+
+        this.myArray.sort(function (a, b) {
+        return a.plaka- b.plaka;
+
+})
+
+
+  this.sonuc= this.myArray.filter(item=>
+  {
+
+    if(this.kbplaka==="büyük" && this.kbnufus==="büyük" ){
+        return item.plaka >= this.plakano && item.nufus >= this.nufusno
+    }
+    
+    if(this.kbplaka==="küçük" && this.kbnufus==="küçük" ){
+        return item.plaka <= this.plakano && item.nufus <= this.nufusno
+    }
+    if(this.kbplaka==="büyük" && this.kbnufus==="küçük" ){
+        return item.plaka >= this.plakano && item.nufus <= this.nufusno
+    }
+    
+    if(this.kbplaka==="küçük" && this.kbnufus==="büyük" ){
+        return item.plaka <= this.plakano && item.nufus >= this.nufusno
+    }
+ 
+ 
+    
+
+  }
+  
+ 
+  )
+
+      },
+               
+              
+            },
+
+        });
+        app.mount('#app2')
+
+           
+      
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
