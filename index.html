@@ -17,18 +17,18 @@
 
     <section id="app2">
     <div class="container">
-     
+     <div class="selectbox">
         <p>Plakası</p>
-        <select v-model="plakano">
+        <select v-model="plakano"  class="form-select" aria-label="Default select example">
             <option v-for="no in plaka">{{no}}</option>
         </select>
          <p>den</p>
-          <select v-model="kbplaka" name="" id="">
+          <select v-model="kbplaka" name="" id=""  class="form-select" aria-label="Default select example">
             <option>küçük</option>
             <option>büyük</option>
           </select> 
           <p>nüfusu</p>  
-            <select v-model="nufusno" >
+            <select v-model="nufusno"  class="form-select" aria-label="Default select example">
                 <option>500000</option>
                 <option>1000000</option>
                 <option>1500000</option>
@@ -37,32 +37,32 @@
               
             </select>
           <p>den</p>
-          <select v-model="kbnufus" name="" id="">
+          <select v-model="kbnufus" name="" id=""  class="form-select" aria-label="Default select example">
             <option>küçük</option>
             <option>büyük</option>
           </select> 
     
           <p>şehirleri</p>
 
-          <button @click="ara()">Ara</button>
-        
-     
-    </div>
-    <div class="result">
+          <button @click="ara()"  class="btn btn-success">Ara</button>
+        </div>
+          <div class="result">
           
-    <table style="width:100%">
-        <tr>
-          <th>Plaka</th>
-          <th>Şehir</th>
-          <th>Nüfus</th>
-        </tr>
-        <tr v-for="item in sonuc" >
-          <td>{{item.plaka}}</td>
-          <td>{{item.city}} </td>
-          <td>{{item.nufus}}</td>
-        </tr>
-    </table>
+            <table>
+                <tr>
+                  <th>Plaka</th>
+                  <th>Şehir</th>
+                  <th>Nüfus</th>
+                </tr>
+                <tr v-for="item in sonuc" >
+                  <td>{{item.plaka}}</td>
+                  <td>{{item.city}} </td>
+                  <td>{{item.nufus}}</td>
+                </tr>
+            </table>
+            </div>
     </div>
+   
    
     </section>
 
@@ -222,8 +222,7 @@
         });
         app.mount('#app2')
 
-  
-
+   
     </script>
 </body>
 
